@@ -8,18 +8,18 @@
         <div  v-if="error_message" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
           {{ error_message }}
         </div>
-      <form action="">
+      <form @submit.prevent="performLogin">
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" v-model="email" class="form-control">
+            <input type="email" name="email" v-model="email" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" v-model="password" class="form-control">
+            <input type="password" name="password" v-model="password" class="form-control" required>
         </div>
         <div class="form-group" style="color:red" v-if=error> {{error}}</div>
-         <div class="form-group">
-            <button type="submit" @click.prevent="performLogin" class="btn btn-info form-control"> Login </button>
+         <div class="form-group mt-3">
+            <button type="submit"  class="btn btn-info form-control"> Login </button>
         </div>
       </form>
       <!-- <circle-spin v-show="isloading"></circle-spin> -->

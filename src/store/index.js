@@ -104,6 +104,7 @@ export default createStore({
             name: payload.name, 
             email: payload.email, 
             password: payload.password, 
+            confirm_password: payload.confirm_password, 
             
           })
           .then( res => {

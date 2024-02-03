@@ -8,22 +8,26 @@
         <div  v-if="error_message" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
           {{ error_message }}
         </div>
-      <form action="">
+      <form @submit.prevent="preFormRegister">
              <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" v-model="name" name="name" class="form-control">
+            <input type="text" v-model="name" name="name" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" v-model="email" name="email" class="form-control">
+            <input type="email" v-model="email" name="email" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" v-model="password" name="password" class="form-control">
+            <input type="password" v-model="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input type="password" v-model="confirm_password" name="confirm_password " class="form-control" required>
         </div>
         <div class="form-group" style="color:red" v-if=error> {{error}}</div>
-         <div class="form-group">
-            <button type="submit" @click.prevent="preFormRegister" class="btn btn-info form-control"> Login </button>
+         <div class="form-group mt-3">
+            <button type="submit" class="btn btn-info form-control"> Register </button>
         </div>
       </form>
 
@@ -40,6 +44,7 @@ export default {
            name: '',
            email: '',
            password: '',
+           confirm_password: '',
            error: '',
            message: '',
            error_message: '',
@@ -54,6 +59,7 @@ export default {
           name: this.name,
           email: this.email,
           password: this.password,
+          confirm_password: this.confirm_password,
         })
         .then( res => {
           if(res.data.error != null){
