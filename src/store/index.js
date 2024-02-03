@@ -80,7 +80,7 @@ export default createStore({
       },
       PerformLogoutAction({commit}){
         return new Promise((resolve, reject) => {
-          axios.get('logout')
+          axios.post('logout')
           .then(res => {
             console.log("resLogout",res );
             commit('SET_Error', null);
@@ -91,6 +91,7 @@ export default createStore({
             resolve(res);
           })
           .catch(err=>{
+            
             console.log("err'logout",err);
             reject(err);
           })

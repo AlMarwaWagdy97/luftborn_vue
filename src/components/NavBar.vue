@@ -56,7 +56,7 @@
 
 
 <script>
-export default ({
+export default {
    data(){
        return {
            token: null,
@@ -80,9 +80,9 @@ export default ({
            }
        },
        PerformLogout(){
-        // localStorage.removeItem('token');
-        // localStorage.removeItem('user');
-        // this.token = null;
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.token = null;
 
          this.$store.dispatch('PerformLogoutAction')
         .then(res =>{
@@ -95,6 +95,6 @@ export default ({
         })
        }
    }
-})
+}
 </script>
 

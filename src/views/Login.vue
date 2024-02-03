@@ -2,7 +2,12 @@
   <div class="login">
     <div class="col-md-6 offset-md-3">
       <h2 class="display-4 text-center mt-5">Login Form</h2>
-
+     <div  v-if="message" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+          {{ message }}
+        </div>
+        <div  v-if="error_message" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+          {{ error_message }}
+        </div>
       <form action="">
         <div class="form-group">
             <label for="email">Email</label>
@@ -31,16 +36,22 @@ export default {
             email: '',
             password: '',
             error: '',
+            message: '',
+           error_message: '',
         }
     }, 
     methods:{
       performLogin(){
+        this.message = "";
+        this.error_message = "";
+
         this.$store.dispatch('performLoginAction',{
           email: this.email,
           password: this.password,
         })
         .then( res => {
           console.log("result " , res);
+            this.message = "Login successfully :)";
             this.$router.push({ name: 'Profile' })
           })
         .catch(err => {

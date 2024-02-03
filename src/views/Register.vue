@@ -2,7 +2,12 @@
   <div class="login">
     <div class="col-md-6 offset-md-3">
       <h2 class="display-4 text-center mt-5">Register Form</h2>
-
+     <div  v-if="message" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+          {{ message }}
+        </div>
+        <div  v-if="error_message" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+          {{ error_message }}
+        </div>
       <form action="">
              <div class="form-group">
             <label for="name">Name</label>
@@ -29,17 +34,22 @@
 <script>
 
 export default {
-   name: "Register",
+   name: "Register-page",
    data() {
        return {
            name: '',
            email: '',
            password: '',
            error: '',
+           message: '',
+           error_message: '',
        }
    },
    methods: {
        preFormRegister(){
+         this.message = "";
+         this.error_message = "";
+
         this.$store.dispatch('preFormRegisterAction',{
           name: this.name,
           email: this.email,
@@ -50,14 +60,14 @@ export default {
             this.error = res.data.msg;
           }
           else{
+            this.message = "Register successfully :)";
             this.$router.push({ name: 'Login' })
           }
-            
 
         })
         .catch(err => {
             console.log(err);
-          this.error = "There Was Error During Register :(";
+          this.error_message = "There Was Error During Register :(";
         })
         
         console.log("regster");
